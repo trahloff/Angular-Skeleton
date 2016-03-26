@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 
     wiredep: {
       bower: {
-        src: 'client/index.html',\n // .html support..
+        src: 'client/index.html' // .html support..
       }
     },
 
