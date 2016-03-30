@@ -1,6 +1,6 @@
-var rkaRoutes = angular.module('rkaRoutes', []);
+var component1Routes = angular.module('component1Routes', []);
 
-rkaRoutes.config(['$stateProvider', function($stateProvider) {
+component1Routes.config(['$stateProvider', function($stateProvider) {
   $stateProvider
 
     .state('login', {

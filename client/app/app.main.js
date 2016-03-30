@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('rkaManager', // general tools HAVE to be loaded before the main components
+var app = angular.module('Angular-Skeleton', // general tools HAVE to be loaded before the main components
   [
     //general tools
     'ui.router', 'ngMaterial', 'md.data.table'
