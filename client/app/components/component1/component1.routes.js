@@ -4,15 +4,10 @@ component1Routes.config(['$stateProvider', function($stateProvider) {
   $stateProvider
 
     .state('login', {
-    templateUrl: "perspectives/sharedPerspective/login.html",
-    controller: 'loginCtrl',
+    templateUrl: "/client/app/components/component1/login.html",
+    controller: 'accountCtrl',
     url: "/login"
   })
 
-  .state('chill', {
-    templateUrl: "perspectives/sharedPerspective/chill.html",
-    controller: 'chillCtrl',
-    url: "/stackOverflowAndChill"
-  })
 
 }])

@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       app_scripts: {
         files: ['client/**/*.js', 'client/**/*.css'],
-        tasks: ['injector', 'newer:ngAnnotate', 'newer:jsc'],
+        tasks: ['injector', 'newer:ngAnnotate', 'newer:jscs'],
         options: {
           spawn: false,
         },
