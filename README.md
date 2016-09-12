@@ -1,4 +1,4 @@
-## Submission für die it-talents.org Code Competition 07/2016
+## Very lean boilerplate for an Angular/Node project
 
 ### You'll need
 
@@ -9,4 +9,4 @@
 
 1. Git Clone
 2. `npm i `
-3. `node app.js / nodemon app.js / grunt`
+3. `node app.js`
