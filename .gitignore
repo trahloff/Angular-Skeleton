@@ -1,4 +1,3 @@
-bower_components
 node_modules
-report
-todo.txt
+bower_components
+npm-debug.log

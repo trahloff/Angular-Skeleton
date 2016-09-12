@@ -1,12 +1,15 @@
 'use strict';
 
-var app = angular.module('Angular-Skeleton', // general tools HAVE to be loaded before the main components
+var app = angular.module('ngAngular-Skeleton', // general tools HAVE to be loaded before the main components
   [
     //general tools
-    'ui.router', 'ngMaterial', 'md.data.table',
+    'ui.router', 'ngMaterial','btford.socket-io',
 
     //components
-    'component1.main'
+    'mainComponent.main',
+
+    //services, factories, filters
+    'debuggingServices'
   ]);
 
 //some general app config stuff
@@ -17,6 +20,6 @@ app.config(['$mdThemingProvider', '$urlRouterProvider', function($mdThemingProvi
     .primaryPalette('yellow')
     .dark();
 
-  $urlRouterProvider.otherwise('/login'); //if the user types some gibberish for an url he gets redirected to the login page
+  $urlRouterProvider.otherwise('/start'); //if the user types some gibberish for an url he gets redirected to the login page
 
 }])

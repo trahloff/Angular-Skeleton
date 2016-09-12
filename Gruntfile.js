@@ -1,108 +1,115 @@
 module.exports = function(grunt) {
 
-  grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-injector');
-  grunt.loadNpmTasks("grunt-jscs");
-  grunt.loadNpmTasks('grunt-newer');
-  grunt.loadNpmTasks('grunt-ng-annotate');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-wiredep');
+    // loads the just-in-time module. it loads the different npm tasks when they are needed. you dont have to write a "grunt.loadNpmTask([task_name])" for each task
+    require('jit-grunt')(grunt, {
+        // here be static mapping
+    });
 
-  grunt.initConfig({
+    grunt.initConfig({
 
-    wiredep: {
-      bower: {
-        src: 'client/index.html' // .html support..
-      }
-    },
-
-    bower: {
-      install: {
-        options: {
-          targetDir: './bower_components',
-          copy: true
-        }
-      }
-    },
-
-    injector: {
-      local_dependencies: {
-        files: {
-          'client/index.html': ['client/**/*.js', 'client/**/*.css'],
-        }
-      },
-      options: {
-        starttag: '<!-- app:js -->',
-        endtag: '<!-- end_app -->'
-      }
-    },
-
-    watch: {
-      bower: {
-        files: ['bower_components**/*.js', 'bower_components**/*.js'],
-        tasks: ['wiredep'],
-        options: {
-          spawn: false,
+        // enables you to run nodemon an watch simultaniously
+        concurrent: {
+            serve: {
+                tasks: ['nodemon', 'watch:bower', 'watch:app_scripts'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
         },
-      },
-      app_scripts: {
-        files: ['client/**/*.js', 'client/**/*.css'],
-        tasks: ['injector', 'newer:ngAnnotate', 'newer:jscs'],
-        options: {
-          spawn: false,
+
+
+        // this injects the files you write into the index.html. you need different subtask with different tags because it's important in which order the .js files are loaded
+        injector: {
+            app_js: {
+                files: {
+                    'public/index.html': ['public/**/*.js'],
+                },
+                options: {
+                    starttag: '<!-- app:js -->',
+                    endtag: '<!-- end_app:js -->'
+                }
+            },
+            app_css: {
+                files: {
+                    'public/index.html': ['public/assets/css/*.css'],
+                },
+                options: {
+                    starttag: '<!-- app:css -->',
+                    endtag: '<!-- end_app:css -->'
+                }
+            }
         },
-      },
-    },
 
-    nodemon: {
-      dev: {
-        script: 'app.js'
-      }
-    },
+        // annotates the angular controllers
+        ngAnnotate: {
+            client: {
+                files: [{
+                    expand: true,
+                    src: ['public/**/*.js']
+                }],
+            },
+        },
 
-    concurrent: {
-      serve: {
-        tasks: ['nodemon', 'watch'],
-        options: {
-          logConcurrentOutput: true
+        // just starts the server with nodemon
+        nodemon: {
+            dev: {
+                script: 'app.js'
+            }
+        },
+
+
+        // this generates watchdogs that do certain task when something changes to the mentioned file types
+        // Warning: some tasks can be slow
+        watch: {
+
+            bower: {
+                files: ['bower_components**/*.js', 'bower_components**/*.js'],
+                tasks: ['wiredep'],
+                options: {
+                    spawn: false,
+                },
+            },
+            app_scripts: {
+                files: ['public/**/*.js', 'public/**/*.css'],
+                tasks: ['injector', 'ngAnnotate'],
+                options: {
+                    spawn: false,
+                },
+            }
+        },
+
+        // injects bower components into the index.html. pretty cool stuff
+        wiredep: {
+            bower: {
+                src: 'public/index.html', // although the option says "src", this is the destination file the components will be injected
+                options: {
+                    // wiredep looks up the main files of each component through the package.json. some lazy devs don't note down what they main files are, in these cases you have to override the default and say wiredep which file to inject
+                    overrides: {
+                        "angular-socket-io": {
+                            main: ["socket.min.js"]
+                        },
+                        "socket.io-client": {
+                            main: ["socket.io.js"]
+                        },
+                        "lodash": {
+                            main: ["dist/lodash.js"]
+                        },
+                        "mdDataTable": {
+                            main: ["dist/md-data-table.js", "dist/md-data-table-templates.js"]
+                        },
+                        "font-awesome": {
+                            main: ["css/font-awesome.min.css"]
+                        }
+                    }
+                }
+            }
         }
-      }
-    },
 
-    jscs: {
-      src: "client/**/*.js",
-      options: {
-        verbose: true, // If you need output with rule names http://jscs.info/overview.html#verbose
-        fix: true, // Autofix code style violations when possible.
-        requireCurlyBraces: ["if"]
-      }
-    },
+    });
 
-    ngAnnotate: {
-      options: {
-        singleQuotes: true,
-      },
-      app: {
-        expand: true,
-        src: 'client/app/components/**/*.js'
 
-      }
-    },
+    grunt.registerTask('default', ['concurrent:serve']);
+    grunt.registerTask('inject', ['ngAnnotate', 'wiredep', 'injector']);
 
-    shell: {
-      multiple: {
-        command: [
-          'npm install',
-          'bower install'
-        ].join('&&')
-      }
-    }
-  });
-
-  grunt.registerTask('default', ['concurrent:serve']);
-  grunt.registerTask('init', ['shell']);
 
 };
