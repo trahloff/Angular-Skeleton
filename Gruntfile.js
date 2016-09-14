@@ -85,6 +85,9 @@ module.exports = function(grunt) {
                 options: {
                     // wiredep looks up the main files of each component through the package.json. some lazy devs don't note down what they main files are, in these cases you have to override the default and say wiredep which file to inject
                     overrides: {
+                        "angular-morris-chart": {
+                            main: ["build/module/angular-morris/angular-morris.min.js"]
+                        },
                         "angular-socket-io": {
                             main: ["socket.min.js"]
                         },
