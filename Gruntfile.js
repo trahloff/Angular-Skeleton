@@ -1,13 +1,14 @@
 module.exports = function(grunt) {
 
-    // loads the just-in-time module. it loads the different npm tasks when they are needed. you dont have to write a "grunt.loadNpmTask([task_name])" for each task
     require('jit-grunt')(grunt, {
         // here be static mapping
     });
 
+    require("time-grunt")(grunt);
+
     grunt.initConfig({
 
-        // enables you to run nodemon an watch simultaniously
+
         concurrent: {
             serve: {
                 tasks: ['nodemon', 'watch:bower', 'watch:app_scripts'],
@@ -16,7 +17,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-
 
         // this injects the files you write into the index.html. you need different subtask with different tags because it's important in which order the .js files are loaded
         injector: {
@@ -57,9 +57,7 @@ module.exports = function(grunt) {
             }
         },
 
-
         // this generates watchdogs that do certain task when something changes to the mentioned file types
-        // Warning: some tasks can be slow
         watch: {
 
             bower: {
@@ -78,12 +76,12 @@ module.exports = function(grunt) {
             }
         },
 
-        // injects bower components into the index.html. pretty cool stuff
+        // injects bower components into the index.html
         wiredep: {
             bower: {
                 src: 'public/index.html', // although the option says "src", this is the destination file the components will be injected
                 options: {
-                    // wiredep looks up the main files of each component through the package.json. some lazy devs don't note down what they main files are, in these cases you have to override the default and say wiredep which file to inject
+                    // wiredep looks up the main files of each component through the package.json. In some cases the main file is not defined and some correction is needed
                     overrides: {
                         "angular-morris-chart": {
                             main: ["build/module/angular-morris/angular-morris.min.js"]
@@ -110,9 +108,7 @@ module.exports = function(grunt) {
 
     });
 
-
     grunt.registerTask('default', ['concurrent:serve']);
     grunt.registerTask('inject', ['ngAnnotate', 'wiredep', 'injector']);
-
 
 };
