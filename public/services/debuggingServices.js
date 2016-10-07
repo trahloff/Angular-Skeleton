@@ -1,7 +1,7 @@
 var app = angular.module('debuggingServices', []);
 
-app.service('watcherDebugService', ["$http", function($http) {
 
+app.service('watcherDebugService', ["$http", function($http) {
 
     this.countActiveWatchers = function() {
         var root = $(document.getElementsByTagName('body'));
@@ -19,6 +19,5 @@ app.service('watcherDebugService', ["$http", function($http) {
         f(root);
         return watchers.length;
     }
-
 
 }]);
