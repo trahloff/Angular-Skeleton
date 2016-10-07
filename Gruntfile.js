@@ -25,6 +25,7 @@ module.exports = function(grunt) {
                     'public/index.html': ['public/**/*.js'],
                 },
                 options: {
+                    ignorePath: 'public',
                     starttag: '<!-- app:js -->',
                     endtag: '<!-- end_app:js -->'
                 }
@@ -34,6 +35,7 @@ module.exports = function(grunt) {
                     'public/index.html': ['public/assets/css/*.css'],
                 },
                 options: {
+                    ignorePath: 'public',
                     starttag: '<!-- app:css -->',
                     endtag: '<!-- end_app:css -->'
                 }

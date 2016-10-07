@@ -9,9 +9,8 @@ var exampleModule = new(require('./server/components/exampleModule.js')),
 
 app
     .use(express.static(__dirname + '/public'))
-    .use('/bower_components', express.static(__dirname + '/bower_components'))
-    .use('/public', express.static(__dirname + '/public'));
-
+    .use('/', require('./server/routes/default'))
+    .use('/bower_components', express.static(__dirname + '/bower_components'));
 
 var server = http.createServer(app).listen(7777);
 console.log("Please open your favorite browser and go to " + "localhost:7777".green);
