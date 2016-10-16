@@ -1,4 +1,4 @@
-var exampleModule = new(require('./server/components/exampleModule.js')),
+var exampleModule = require('./server/components/exampleModule.js'),
     express = require('express'),
     app = express(),
     colors = require('colors'),
