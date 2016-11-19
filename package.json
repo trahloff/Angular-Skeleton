@@ -1,38 +1,42 @@
 {
-    "name": "Angular-Skeleton",
-    "version": "0.1.1",
-    "description": "",
-    "main": "app.js",
-    "scripts": {
-        "postinstall": "bower install",
-        "start": "node app.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/trahloff/Angular-Skeleton.git"
-    },
-    "author": "Tobias Rahloff <rahloff@gmail.com>",
-    "license": "LGPL-3.0",
-    "bugs": {
-        "url": "https://github.com/trahloff/Angular-Skeleton/issues"
-    },
-    "homepage": "https://github.com/trahloff/Angular-Skeleton#readme",
-    "dependencies": {
-        "body-parser": "^1.15.2",
-        "bower": "^1.7.9",
-        "colors": "^1.1.2",
-        "express": "^4.14.0",
-        "request": "^2.74.0"
-    },
-    "devDependencies": {
-        "grunt": "^1.0.1",
-        "grunt-concurrent": "^2.2.1",
-        "grunt-contrib-watch": "^1.0.0",
-        "grunt-injector": "^0.6.1",
-        "grunt-ng-annotate": "^2.0.1",
-        "grunt-nodemon": "^0.4.2",
-        "grunt-wiredep": "^2.0.0",
-        "jit-grunt": "^0.10.0",
-        "time-grunt": "1.4.0"
-    }
+  "name": "Angular-Skeleton",
+  "version": "0.1.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "postinstall": "bower install",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "babel": " babel --watch=./src --out-dir=./dist",
+    "start": "node ./dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trahloff/Angular-Skeleton.git"
+  },
+  "author": "Tobias Rahloff <rahloff@gmail.com>",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/trahloff/Angular-Skeleton/issues"
+  },
+  "homepage": "https://github.com/trahloff/Angular-Skeleton#readme",
+  "dependencies": {
+    "babel-plugin-transform-flow-strip-types": "6.18.0",
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "flow-bin": "0.35.0",
+    "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.2.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-injector": "^0.6.1",
+    "grunt-ng-annotate": "^2.0.1",
+    "grunt-nodemon": "^0.4.2",
+    "grunt-wiredep": "^2.0.0",
+    "jit-grunt": "^0.10.0",
+    "time-grunt": "1.4.0"
+  }
 }
