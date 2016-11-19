@@ -22,10 +22,7 @@
         "bower": "^1.7.9",
         "colors": "^1.1.2",
         "express": "^4.14.0",
-        "freeport": "^1.0.5",
-        "node-uuid": "^1.4.7",
-        "request": "^2.74.0",
-        "socketio": "^1.0.0"
+        "request": "^2.74.0"
     },
     "devDependencies": {
         "grunt": "^1.0.1",

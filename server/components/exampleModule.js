@@ -1,3 +1,3 @@
-exports.sayHi = function(title) {
-  console.log("The friendly module says 'hi'");
+exports.say = stuff => {
+    console.log("The friendly module says '" + stuff + "'");
 };
