@@ -1,6 +1,6 @@
 {
     "name": "Angular-Skeleton",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "description": "",
     "main": "app.js",
     "scripts": {
@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/trahloff/Angular-Skeleton#readme",
     "dependencies": {
-        "body-parser": "1.15.2",
+        "body-parser": "^1.15.2",
         "express": "^4.14.0"
     }
 }

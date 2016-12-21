@@ -2,12 +2,7 @@ html {
     height: 100%;
     background: darkgrey;
 }
-div {
-    background: inherit;
-}
-body {
-    background: inherit;
-}
-md-content {
+
+div, body, md-content {
     background: inherit;
 }
