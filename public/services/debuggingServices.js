@@ -1,5 +1,6 @@
-var app = angular.module('debuggingServices', []);
+'use strict';
 
+var app = angular.module('debuggingServices', []);
 
 app.service('watcherDebugService', ["$http", function($http) {
 
