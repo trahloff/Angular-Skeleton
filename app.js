@@ -18,12 +18,14 @@ app
     .use('/node_modules', express.static(__dirname + '/node_modules'));
 
 /* -------------------------Route Definitions------------------------- */
-fs.readdirSync('./components/routes').forEach(function(file) {
-    app.use('/' + file.replace('.js', ''), require("./components/routes/" + file));
-});
+fs
+    .readdirSync('./components/routes')
+    .forEach(file => {
+        app.use('/' + file.replace('.js', ''), require("./components/routes/" + file));
+    });
 
 
-let port = process.env.PORT || config.port || 8080;
+let port = process.env.PORT || config.port || 80;
 const server = http.createServer(app).listen(port);
 console.log("Please open your favorite browser and go to " + "localhost:" + port);
 
