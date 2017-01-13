@@ -15,7 +15,7 @@ app
     }))
     .use(bodyParser.json())
     .use('/', express.static(__dirname + '/public'))
-    .use('/bower_components', express.static(__dirname + '/bower_components'));
+    .use('/node_modules', express.static(__dirname + '/node_modules'));
 
 /* -------------------------Route Definitions------------------------- */
 fs.readdirSync('./components/routes').forEach(function(file) {
