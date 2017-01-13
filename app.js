@@ -1,4 +1,3 @@
-'use strict';
 const exampleModule = require('./components/exampleModule.js'),
     config = require('./components/config/express.json'),
     express = require('express'),

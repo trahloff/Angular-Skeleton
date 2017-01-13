@@ -2,7 +2,7 @@
 
 ### You'll need
 
-1. [NodeJS](https://nodejs.org/en/download/)
+1. [NodeJS](https://nodejs.org/en/download/) v6.9.4 or higher 
 
 
 ### Setup
