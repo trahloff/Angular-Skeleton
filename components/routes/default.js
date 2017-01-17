@@ -4,8 +4,8 @@ module.exports = (() => {
     let api = express.Router();
 
     api
-        .get("/whatev", (req, res) => {
-            res.send("whatev");
+        .get("/hello", (req, res) => {
+            res.send("hello");
         });
 
     return api;
