@@ -1,4 +1,4 @@
 angular.module('mainComponent.main', [
-    'mainComponentCtrls',
-    'mainComponentRoutes'
-]);
+  'mainComponentCtrls',
+  'mainComponentRoutes'
+])
